@@ -12,7 +12,7 @@ struct Territorio {
     int tropas;       // Quantidade de tropas inteira
 };
 
-int main() {
+int main() 
     // Cria um VETOR de estruturas: armazena 5 territórios
     struct Territorio territorios[5];
     int i; // Variável auxiliar para os laços de repetição
