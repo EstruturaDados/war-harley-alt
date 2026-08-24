@@ -9,7 +9,7 @@
 struct Territorio {
     char nome[30];    // Nome do território (até 29 caracteres)
     char cor[10];     // Cor do exército (ex: Vermelho, Azul...)
-    int tropas;      // Quantidade de tropas inteira
+    int tropas;       // Quantidade de tropas inteira
 };
 
 int main() {
