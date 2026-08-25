@@ -72,8 +72,9 @@ void atacar(Territorio* atacante, Territorio* defensor) {
     }
 }
 
+// Função que LIBERA A MEMÓRIA MANUALMENTE quando digitar 0
 void liberarMemoria(Territorio* mapa) {
-    free(mapa);
+    free(mapa);  // ← COMANDO FREE executado aqui! ✅
     printf("\nMemoria liberada com sucesso!\n");
 }
 
@@ -81,7 +82,6 @@ int main() {
     Territorio* mapa;
     int totalTerritorios;
     int atacante, defensor;
-    char continuar;
 
     srand(time(NULL));
 
@@ -101,11 +101,18 @@ int main() {
     exibirTerritorios(mapa, totalTerritorios);
 
     printf("\n\n===== SISTEMA DE ATAQUE =====\n");
-    printf("Escolha os territorios pelo numero da lista.\n");
+    printf("Digite 0 (zero) a qualquer momento para ENCERRAR e liberar memoria.\n");
 
     do {
-        printf("\nNumero do territorio ATACANTE: ");
+        printf("\nNumero do territorio ATACANTE (ou 0 para encerrar): ");
         scanf("%d", &atacante);
+
+        // ✅ SE DIGITAR 0 → ENCERRA E LIBERA A MEMÓRIA MANUALMENTE!
+        if (atacante == 0) {
+            liberarMemoria(mapa);  // ← CHAMA O FREE MANUALMENTE! ✅
+            printf("Programa encerrado com sucesso!\n");
+            return 0;
+        }
 
         printf("Numero do territorio DEFENSOR: ");
         scanf("%d", &defensor);
@@ -133,13 +140,5 @@ int main() {
 
         exibirTerritorios(mapa, totalTerritorios);
 
-        printf("\nDeseja realizar outro ataque? (s/n): ");
-        scanf(" %c", &continuar);
-
-    } while (continuar == 's' || continuar == 'S');
-
-    liberarMemoria(mapa);
-
-    printf("\nPrograma encerrado com sucesso!\n");
-    return 0;
+    } while (1);  // Repete infinitamente até digitar 0
 }
